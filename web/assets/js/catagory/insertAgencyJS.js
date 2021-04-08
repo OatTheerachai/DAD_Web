@@ -1,5 +1,6 @@
 $(document).ready(function () {
   var url = "../../assets/lib/rfdb_connector.php";
+  var logurl = "../../assets/lib/loghub.php";
   var dataset = [];
 
   var package = {
@@ -100,7 +101,7 @@ $(document).ready(function () {
       });
       location.reload();
     } else {
-      alert("กรุณาใส่ชื่อตึก");
+      alert("กรุณาใส่ชื่อหมวดหมู่");
     }
   };
 
@@ -154,6 +155,12 @@ $(document).ready(function () {
   // document.getElementById("catdrop").onchange=function(){
   //   alert()
   // }
+
+  document.getElementById("insertsubmit").onclick = function () {
+    $.post(logurl, { actid: "1" }, function (data) {
+      alert(data);
+    });
+  };
 
   /////////////////////////////////////////////////////////////
   // FUNCTIONS

@@ -432,7 +432,7 @@ include_once('../../authen.php');
                 >
                   Close
                 </button> -->
-              <input type="submit" class="btn btn-primary btn-block" name="uploadfilesub" value="add" />
+              <input type="submit" id="insertsubmit" class="btn btn-primary btn-block" name="uploadfilesub" value="add" />
             </div>
           </form>
         </div>

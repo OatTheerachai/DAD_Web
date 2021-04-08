@@ -9,6 +9,7 @@ if (isset($_SESSION['uid'])) {
         $sql = "INSERT INTO admin_log (user_id, activity_id) VALUES ($uid, $actid)";
 
         if (mysqli_query($conn, $sql)) {
+            echo "add agency log";
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
             mysqli_close($conn);
