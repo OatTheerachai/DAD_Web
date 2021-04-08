@@ -23,3 +23,6 @@ mysqli_set_charset($conn, 'utf8');
 if (!$conn) {
     die("Connection failed" . mysqli_connect_error());
 }
+if (isset($_POST['uid'])) {
+    $uid = $_POST['uid'];
+}
