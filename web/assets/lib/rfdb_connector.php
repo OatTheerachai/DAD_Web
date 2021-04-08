@@ -100,6 +100,7 @@ switch ($id) {
 
 
         $addbdin = $_POST["addbdin"];
+        $addcatin = $_POST["addcatin"];
         $bdid = $_POST["bdid"];
         $floorin = $_POST["floorin"];
         $codein = $_POST["codein"];
@@ -129,6 +130,22 @@ switch ($id) {
             }
 
             mysqli_close($conn);
+        } else if ($addcatin != '') {
+
+
+
+
+            $checkcatsql = "SELECT * FROM category WHERE name = '$addcatin'";
+
+            $result = json_decode(getdata($checkcatsql, $conn));
+
+            if (count($result) > 0) {
+                echo "already in db";
+            } else {
+                $insertsql = "INSERT INTO category (name) VALUES ('$adcatdin')";
+                mysqli_query($conn, $insertsql);
+                echo "insert category complete";
+            }
         } else if (
             $bdid != '' &&
             $floorin != '' &&
@@ -186,20 +203,22 @@ switch ($id) {
         // else if(isset)
 
         ///////deleteonlyimage///////
-        case 4:
-            $targetid = $_POST["agencid"];
-            if (isset($_POST["imgname"])) {
-                $imgname = $_POST["imgname"];
-                $delsql = "UPDATE agency_item SET LogoImgName = '-' /*, LogoImg = null WHERE id = */";
-                mysqli_query($conn, $delsql);
-                mysqli_close($conn);
-                $imgpath = "../img/logo/" . $imgname;
-    
-                if (unlink($imgpath)) {
-                }
+    case 4:
+        $targetid = $_POST["agencid"];
+        if (isset($_POST["imgname"])) {
+            $imgname = $_POST["imgname"];
+            $delsql = "UPDATE agency_item SET LogoImgName = '-' /*, LogoImg = null WHERE id = */";
+            mysqli_query($conn, $delsql);
+            mysqli_close($conn);
+            $imgpath = "../img/logo/" . $imgname;
+
+            if (unlink($imgpath)) {
             }
-    
-            break;
+        }
+
+        break;
+        //add category
+
 }
 
 function getdata($sql, $connector)

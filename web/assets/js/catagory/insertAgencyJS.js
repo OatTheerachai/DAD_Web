@@ -81,6 +81,28 @@ $(document).ready(function () {
       alert("กรุณาใส่ชื่อตึก");
     }
   };
+  document.getElementById("addcategory").onclick = function () {
+    var addcatin = document.getElementById("inputcat").value;
+    if (addcatin != "") {
+      insertpackage = {
+        id: 2,
+        addbdin: addcatin,
+        bdid: "",
+        floorin: "",
+        codein: "",
+        catid: "",
+        ownerin: "",
+        namein: "",
+        detailin: "",
+      };
+      $.post(url, insertpackage, function (data) {
+        alert(data);
+      });
+      location.reload();
+    } else {
+      alert("กรุณาใส่ชื่อตึก");
+    }
+  };
 
   /////////////////////////////////////////////////////////////
   // for delete
