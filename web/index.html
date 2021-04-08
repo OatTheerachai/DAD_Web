@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<link rel="stylesheet" href="assets/css/index.css">
+</head>
+<body>
+  <!-- <div class="bg"> -->
+          <!-- <iframe id="video"
+          width="450" height="300"
+          src="https://www.youtube.com/embed/Ow41DkKa-74?autoplay=1&mute=1"
+          frameborder="0"
+          style="border: solid 4px #37474F"
+          ></iframe> -->
+          <!-- <iframe width="420" height="345" src="http://www.youtube.com/embed/oHg5SJYRHA0?autoplay=1&nablejsapi" frameborder="0" 
+          allow="autoplay;"
+          allowfullscreen></iframe>
+  </div> -->
+  <!-- <div id="player" class="bg"></div> -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <!-- <div class="swiper-slide" style="background-image: url(assets/img/bg-01.jpg);">
+            <div class="conteent">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Exercitationem incidunt rerum neque velit ipsum ab impedit maxime nisi enim cum suscipit, 
+                    dignissimos atque consectetur autem possimus libero? Quis, mollitia cumque?</p>
+            </div>
+          </div> -->
+          
+        </div>
+      </div>
+      <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/Ow41DkKa-74" title="YouTube video player" frameborder="0" 
+      allow="" autoplay></iframe> -->
+      <!-- <iframe width="420" height="345" src="http://www.youtube.com/embed/oHg5SJYRHA0?autoplay=1" allow="autoplay; encrypted-media" frameborder="0" allowfullscreen></iframe> -->
+    
+      <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/tWrqt7SunMI?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+    
+      <!-- <iframe id="existing-iframe-example"
+          width="300" height="300"
+          src="https://www.youtube.com/embed/-SFcIUEvNOQ?autoplay=1&mute=1"
+          frameborder="0"
+          style="border: solid 4px #37474F"
+          ></iframe> -->
+      <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/plugins/jquery/jquery.min.js"></script>
+<script>
+
+    $.ajax({
+    url: "assets/lib/datareturn.php", 
+    type: 'post',
+    data: {
+        i:116
+    },
+    success: function(result){
+        result.forEach(element => {
+            $('.swiper-wrapper').append(`<div class="swiper-slide" style="background-image: url(${element.path});">
+                <div class="conteent">
+                    <h3>${element.title}<h3>
+                    <p>${element.detail}</p>
+                </div>
+            </div>`);
+        });
+        var swiper = new Swiper('.swiper-container', {
+      spaceBetween: 30,
+      centeredSlides: true,
+      autoplay: {
+        delay: 10000,
+        disableOnInteraction: false,
+      },
+    });
+    }});
+    // console.log("test");
+
+//This code loads the IFrame Player API code asynchronously.
+var tag = document.createElement('script');
+// var tag = $('#player').append('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+//This function creates an <iframe> (and YouTube player)
+var player;
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('player', {
+    height: '300',
+    width: '450',
+    videoId: 'Ow41DkKa-74',
+    playerVars: { 
+        'autoplay': 1,
+      //   'mute': 1
+      },
+    events: {
+      'onReady': onPlayerReady,
+      'onStateChange': onPlayerStateChange
+    }
+  });
+}
+
+//The API will call this function when the video player is ready.
+function onPlayerReady(event) {
+  event.target.playVideo();
+  event.target.setVolume(0);
+}
+
+//    The function indicates that when playing a video (state=1),
+var done = false;
+function onPlayerStateChange(event) {
+  if (event.data == YT.PlayerState.PLAYING && !done) {
+    setTimeout(stopVideo, 2000);
+    done = true;
+    // onYouTubeIframeAPIReady();
+  }
+}
+// function stop video
+function stopVideo() {
+  player.stopVideo();
+}
+
+console.log(player);
+  </script>
+</body>
+</html> 
