@@ -156,11 +156,11 @@ $(document).ready(function () {
   //   alert()
   // }
 
-  document.getElementById("insertsubmit").onclick = function () {
-    $.post(logurl, { actid: "1" }, function (data) {
-      alert(data);
-    });
-  };
+  // document.getElementById("insertsubmit").onclick = function () {
+  //   $.post(logurl, { actid: "1" }, function (data) {
+  //     alert(data);
+  //   });
+  // };
 
   /////////////////////////////////////////////////////////////
   // FUNCTIONS

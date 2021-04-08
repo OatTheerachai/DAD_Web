@@ -39,6 +39,22 @@ if (isset($_POST['uploadfilesub'])) {
     } else {
         insertdata($urlheader, $bdid, $floorin, $codein, $catid, $ownerin, $namein, $engnamein, $chinamein, $detailin, $engdetailin, $chidetailin, "-", /*null,*/ $conn);
     }
+
+    if (isset($_SESSION['uid'])) {
+        $uid = $_SESSION['uid'];
+
+        if (isset($_POST['actid'])) {
+            $actid = 1;
+            $sql = "INSERT INTO admin_log (user_id, activity_id) VALUES ($uid, $actid)";
+
+            if (mysqli_query($conn, $sql)) {
+                echo "add agency log";
+            } else {
+                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                mysqli_close($conn);
+            }
+        }
+    }
 }
 
 
