@@ -303,7 +303,7 @@ include_once('../../authen.php');
                     <br />
                     <input class="btn btn-success" id="addcategory" type="button" value="addcategory" />
                   </div>
-                  <div class="form-group col-sm-6"></div>
+
                   <div class="form-group col-sm-6">
                     <label for="floor">ชั้น:</label><br />
                     <input class="form-control" name="floorins" type="number" id="floor" value="" />
