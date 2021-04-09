@@ -1,10 +1,11 @@
 $(document).ready(function () {
-    console.log("hello");
-    var table;
-  
-    var url = "../../assets/lib/rfdb_connector.php";
-  
-    var dataset = [];
+  alert("HELLOWORLD");
+  console.log("hello");
+  var table;
+
+  var url = "../../assets/lib/rfdb_connector.php";
+
+  var dataset = [];
   /////////////////////////////////////////////////////////////
   // startup
   /////////////////////////////////////////////////////////////
@@ -415,9 +416,7 @@ $(document).ready(function () {
       if (confirm("ARE YOU SURE TO DELETE THIS IMAGE?") == true) {
         let agencid = document.getElementById("agencid").value;
         let imagepath = document.getElementById("imageshow").src;
-        let imagename = imagepath.split(
-          "../../assets/img/logo/"
-        );
+        let imagename = imagepath.split("../../assets/img/logo/");
         let deleteimgpackage = {
           id: 4,
           agencid: agencid,
@@ -516,7 +515,7 @@ $(document).ready(function () {
           data: null,
           width: 100,
           defaultContent:
-          "<div class='row'>" + 
+            "<div class='row'>" +
             "<div class='btn-toolbar' role='toolbar' aria-label='Toolbar with button groups'>" +
             "<div class='btn-group mr-5' role='group' aria-label='First group'>" +
             "<button type='button' id='updatebtn' class='btn btn-info btn-sm' data-toggle='modal' data-target='#updateModal'>edit</button>" +
@@ -524,7 +523,8 @@ $(document).ready(function () {
             "<div class='btn-group mr-5' role='group' aria-label='First group'>" +
             "<button type='button' id='deleteagency' class='btn btn-warning btn-sm' data-toggle='modal' data-target=''>delete</button>" +
             "</div>" +
-            "</div>" + "<div>",
+            "</div>" +
+            "<div>",
         },
       ],
       columns: [
@@ -571,5 +571,4 @@ $(document).ready(function () {
       return str;
     } else return str;
   }
-  });
-  
+});

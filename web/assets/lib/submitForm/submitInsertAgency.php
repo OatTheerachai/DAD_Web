@@ -41,6 +41,7 @@ if (isset($_POST['uploadfilesub'])) {
     }
 
     if (isset($_SESSION['uid'])) {
+        echo "<script>console.log('sessionPass');</script>";
         $uid = $_SESSION['uid'];
 
         if (isset($_POST['actid'])) {

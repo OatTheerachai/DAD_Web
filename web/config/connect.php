@@ -13,7 +13,8 @@ $dbname = "project";
 
 // $urlheader = "http://localhost:8080/Github/Webconfig/New_project/frontend/";
 // $urlheader = "http://localhost/frontend/";
-$urlheader = "https://cloud.tabsoft.co.th/pj/dad/web/";
+$urlheader = "http://localhost/web/";
+// $urlheader = "https://cloud.tabsoft.co.th/pj/dad/web/";
 
 // Create Connection
 $conn = mysqli_connect($servername, $username, $password, $dbname);
