@@ -1,5 +1,4 @@
 $(document).ready(function () {
-  alert("HELLOWORLD");
   console.log("hello");
   var table;
 
@@ -18,6 +17,7 @@ $(document).ready(function () {
   var insertpackage = {
     id: 2,
     addbdin: "",
+    addcatin: "",
     bdid: "",
     floorin: "",
     codein: "",

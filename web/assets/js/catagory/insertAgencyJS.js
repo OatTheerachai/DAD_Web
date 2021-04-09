@@ -11,6 +11,7 @@ $(document).ready(function () {
   var insertpackage = {
     id: 2,
     addbdin: "",
+    addcatin: "",
     bdid: "",
     floorin: "",
     codein: "",

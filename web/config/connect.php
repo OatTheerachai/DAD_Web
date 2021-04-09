@@ -8,7 +8,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "project";
+$dbname = "WebConfig";
 
 
 // $urlheader = "http://localhost:8080/Github/Webconfig/New_project/frontend/";
