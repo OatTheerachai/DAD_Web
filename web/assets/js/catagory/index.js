@@ -499,7 +499,21 @@ $(document).ready(function () {
       dom: '<"top"fB>rt<"bottom"lip>',
       // dom: "<Bf<t>ip>",
       // dom: "Bfrtip",
-      buttons: ["excel", "print"],
+      buttons: [
+        {
+          extend: "excelHtml5",
+          exportOptions: {
+            columns: [0, 2, 3, 6, 7, 8, 9, 12],
+          },
+        },
+        // "print",
+        {
+          extend: "print",
+          exportOptions: {
+            columns: [0, 2, 3, 6, 7, 8, 9],
+          },
+        },
+      ],
       data: dataset,
       // autoWidth: true,
       columnDefs: [
