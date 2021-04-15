@@ -1,5 +1,6 @@
 <?php
 include "../../../config/connect.php";
+session_start();
 
 if (isset($_POST['updatesub'])) {
 
@@ -61,6 +62,22 @@ function updatedata($urlheader, $id, $bd, $code, $detailin, $engdetailin, $chide
 
     // $sql = "UPDATE agency_item SET code_place='$code', floor='$floor', owner='$owner',name='$name',bd_id=$bd,cat_id=$cat,detail=$detailin,LogoName=$imgname, WHERE id=$id";
     if (mysqli_query($connector, $sql)) {
+        if (isset($_SESSION['uid'])) {
+            // echo "<script>console.log('sessionPass');</script>";
+            $uid = $_SESSION['uid'];
+            // $uid = 1;
+
+
+            $actid = 7;
+            $sql = "INSERT INTO log_admin (user_id, activity_id) VALUES ('$uid', '$actid')";
+
+            if (mysqli_query($connector, $sql)) {
+                echo "add agency log";
+            } else {
+                echo "Error: " . $sql . "<br>" . mysqli_error($connector);
+                mysqli_close($connector);
+            }
+        }
         // echo "Record updated successfully";
         $url = $urlheader . "pages/catagory/index.php";
         // echo '<script language="javascript">';

@@ -1,5 +1,6 @@
 <?php
 include "../../../config/connect.php";
+session_start();
 
 if (!$conn) {
     die("Connection failed" . mysqli_connect_error());
@@ -39,23 +40,6 @@ if (isset($_POST['uploadfilesub'])) {
     } else {
         insertdata($urlheader, $bdid, $floorin, $codein, $catid, $ownerin, $namein, $engnamein, $chinamein, $detailin, $engdetailin, $chidetailin, "-", /*null,*/ $conn);
     }
-
-    if (isset($_SESSION['uid'])) {
-        echo "<script>console.log('sessionPass');</script>";
-        $uid = $_SESSION['uid'];
-
-        if (isset($_POST['actid'])) {
-            $actid = 1;
-            $sql = "INSERT INTO admin_log (user_id, activity_id) VALUES ($uid, $actid)";
-
-            if (mysqli_query($conn, $sql)) {
-                echo "add agency log";
-            } else {
-                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-                mysqli_close($conn);
-            }
-        }
-    }
 }
 
 
@@ -73,6 +57,23 @@ function insertdata($urlheader, $bd, $floor, $code, $cat, $owner, $name, $engnam
 
 
     if (mysqli_query($connector, $sql)) {
+
+        if (isset($_SESSION['uid'])) {
+            // echo "<script>console.log('sessionPass');</script>";
+            $uid = $_SESSION['uid'];
+            // $uid = 1;
+
+
+            $actid = 1;
+            $sql = "INSERT INTO log_admin (user_id, activity_id) VALUES ('$uid', '$actid')";
+
+            if (mysqli_query($connector, $sql)) {
+                echo "add agency log";
+            } else {
+                echo "Error: " . $sql . "<br>" . mysqli_error($connector);
+                mysqli_close($connector);
+            }
+        }
         $url = $urlheader . "pages/catagory/index.php";
         // echo '<script language="javascript">';
         // echo 'alert("New record created successfully")';

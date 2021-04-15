@@ -8,7 +8,9 @@ include_once('../../authen.php');
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
-  <title>Config</title>
+  <title>Category</title>
+
+  <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
 
   <!-- stylesheet -->
   <link rel="stylesheet" href="../../assets/vendor/plugins/fontawesome-free/css/all.min.css" />
@@ -17,8 +19,11 @@ include_once('../../authen.php');
   <link rel="stylesheet" href="../../assets/vendor/plugins/bootstrap-toggle/bootstrap-toggle.min.css" />
   <link rel="stylesheet" href="../../assets/vendor/plugins/toastr/toastr.min.css" />
   <link rel="stylesheet" href="../../assets/vendor/plugins/@sweetalert2/theme-bootstrap-4/bootstrap-4.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.css" />
 
   <!-- Datatables -->
+
+
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" />
   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.5/css/responsive.bootstrap4.min.css" />
   <link rel="stylesheet" href="https://cdn.datatables.net/searchpanes/1.2.1/css/searchPanes.dataTables.min.css" />
@@ -440,9 +445,9 @@ include_once('../../authen.php');
     </div>
   </div>
 
-  <th class="align-middle sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 102.6px" aria-label="ลำดับ: activate to sort column ascending">
+  <!-- <th class="align-middle sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 102.6px" aria-label="ลำดับ: activate to sort column ascending">
     ลำดับ
-  </th>
+  </th> -->
   </div>
   <!-- SCRIPTS -->
   <script src="../../assets/vendor/plugins/jquery/jquery.min.js"></script>
@@ -455,6 +460,13 @@ include_once('../../authen.php');
   <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
   <script src="https://cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.min.js"></script>
   <script src="https://cdn.datatables.net/responsive/2.2.5/js/responsive.bootstrap4.min.js"></script>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.print.js"></script>
 
   <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
   <script src="../../assets/vendor/plugins/toastr/toastr.min.js"></script>

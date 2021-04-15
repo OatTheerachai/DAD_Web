@@ -487,6 +487,7 @@ $(document).ready(function () {
   }
   function createdatatable(htmlid, dataset) {
     var table = $(htmlid).DataTable({
+      // lengthChange: false,
       // scrollY: "600px",
       // scrollCollapse: true,
       scrollX: true,
@@ -495,15 +496,18 @@ $(document).ready(function () {
         enable: true,
       },
       // dom: "lfrtip",
-      dom: '<"top"f>rt<"bottom"lip>',
+      dom: '<"top"fB>rt<"bottom"lip>',
+      // dom: "<Bf<t>ip>",
+      // dom: "Bfrtip",
+      buttons: ["excel", "print"],
       data: dataset,
-      autoWidth: false,
+      // autoWidth: true,
       columnDefs: [
-        { targets: 0, width: "5%" },
-        {
-          targets: [6, 8, 3],
-          width: 80,
-        },
+        // { targets: 0, width: "5%" },
+        // {
+        //   targets: [6, 8, 3],
+        //   width: 80,
+        // },
         {
           targets: [2, 1, 5, 10, 11, 13, 14],
           visible: false,
@@ -549,6 +553,8 @@ $(document).ready(function () {
 
       destroy: true,
     });
+    // table.buttons().container().insertBefore("#example_filter");
+
     // /////////////////////////////////////////////////////////////
     // // for updatepage
     // /////////////////////////////////////////////////////////////
