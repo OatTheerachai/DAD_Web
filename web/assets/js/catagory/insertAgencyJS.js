@@ -45,6 +45,7 @@ $(document).ready(function () {
     }
   });
   $.post(url, insertpackage, function (data, status) {
+    console.log("3333333");
     console.log(data);
     jsondata = JSON.parse(data);
     console.log(jsondata);
@@ -67,6 +68,7 @@ $(document).ready(function () {
       insertpackage = {
         id: 2,
         addbdin: addbuildin,
+        addcatin: "",
         bdid: "",
         floorin: "",
         codein: "",
@@ -88,7 +90,8 @@ $(document).ready(function () {
     if (addcatin != "") {
       insertpackage = {
         id: 2,
-        addbdin: addcatin,
+        addbdin: "",
+        addcatin: addcatin,
         bdid: "",
         floorin: "",
         codein: "",

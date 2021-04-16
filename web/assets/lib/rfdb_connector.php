@@ -13,6 +13,7 @@
 //     die("Connection failed" . mysqli_connect_error());
 // }
 include("../../config/connect.php");
+session_start();
 
 
 $id = $_POST["id"];
@@ -126,8 +127,27 @@ switch ($id) {
                 echo "already in db";
             } else {
                 $insertsql = "INSERT INTO building (name) VALUES ('$addbdin')";
-                mysqli_query($conn, $insertsql);
-                echo "insert building complete";
+                if (mysqli_query($conn, $insertsql)) {
+                    echo "insert building complete";
+                    if (isset($_SESSION['uid'])) {
+                        // echo "<script>console.log('sessionPass');</script>";
+                        $uid = $_SESSION['uid'];
+                        // $uid = 1;
+
+
+                        $actid = 3;
+                        $sql = "INSERT INTO log_admin (user_id, activity_id) VALUES ('$uid', '$actid')";
+
+                        if (mysqli_query($conn, $sql)) {
+                        } else {
+                            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                            mysqli_close($conn);
+                        }
+                    }
+                } else {
+                    echo "Error: " . $insertsql . "<br>" . mysqli_error($conn);
+                    mysqli_close($conn);
+                }
             }
 
             mysqli_close($conn);
@@ -143,9 +163,25 @@ switch ($id) {
             if (count($result) > 0) {
                 echo "already in db";
             } else {
-                $insertsql = "INSERT INTO category (name) VALUES ('$adcatdin')";
-                mysqli_query($conn, $insertsql);
-                echo "insert category complete";
+                $insertsql = "INSERT INTO category (name) VALUES ('$addcatin')";
+                if (mysqli_query($conn, $insertsql)) {
+                    echo "insert category complete";
+                    if (isset($_SESSION['uid'])) {
+                        // echo "<script>console.log('sessionPass');</script>";
+                        $uid = $_SESSION['uid'];
+                        // $uid = 1;
+
+
+                        $actid = 2;
+                        $sql = "INSERT INTO log_admin (user_id, activity_id) VALUES ('$uid', '$actid')";
+
+                        if (mysqli_query($conn, $sql)) {
+                        } else {
+                            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                            mysqli_close($conn);
+                        }
+                    }
+                }
             }
         } else if (
             $bdid != '' &&
@@ -195,7 +231,24 @@ switch ($id) {
             $targetid = $_POST["agencid"];
             $delsql = "DELETE FROM agency_item WHERE id='$targetid'";
             // $getagencname = "SELECT name FROM building WHERE id='$bdid'";
-            mysqli_query($conn, $delsql);
+
+            if (mysqli_query($conn, $delsql)) {
+                if (isset($_SESSION['uid'])) {
+                    // echo "<script>console.log('sessionPass');</script>";
+                    $uid = $_SESSION['uid'];
+                    // $uid = 1;
+
+
+                    $actid = 4;
+                    $sql = "INSERT INTO log_admin (user_id, activity_id) VALUES ('$uid', '$actid')";
+
+                    if (mysqli_query($conn, $sql)) {
+                    } else {
+                        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                        mysqli_close($conn);
+                    }
+                }
+            }
             mysqli_close($conn);
             break;
         }
@@ -218,8 +271,23 @@ switch ($id) {
         }
 
         break;
-        //add category
+        //export an excel logging
+    case 5:
+        if (isset($_SESSION['uid'])) {
+            // echo "<script>console.log('sessionPass');</script>";
+            $uid = $_SESSION['uid'];
+            // $uid = 1;
 
+
+            $actid = 8;
+            $sql = "INSERT INTO log_admin (user_id, activity_id) VALUES ('$uid', '$actid')";
+
+            if (mysqli_query($conn, $sql)) {
+            } else {
+                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                mysqli_close($conn);
+            }
+        }
 }
 
 function getdata($sql, $connector)

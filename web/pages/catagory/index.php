@@ -74,7 +74,7 @@ include_once('../../authen.php');
                         class="btn btn-primary float-right"
                         >เพิ่มข้อมูล</a
                       > -->
-                  <a type="button" id="insertbtn" data-toggle="modal" data-target="#insertModal" class="btn btn-primary float-right">เพิ่มข้อมูล</a>
+                  <a type="button" id="insertbtn" data-toggle="modal" data-target="#insertModal" class="btn btn-primary float-right">add agency</a>
                 </div>
 
                 <div class="card-body">
@@ -126,7 +126,7 @@ include_once('../../authen.php');
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Edit data</h4>
+            <h4 class="modal-title">Edit agency</h4>
             <button type="button" class="close" data-dismiss="modal">
               &times;
             </button>
@@ -163,45 +163,45 @@ include_once('../../authen.php');
               <div class="card-body">
                 <div class="form-row">
                   <div class="form-group col-sm-6">
-                    <label for="catdropModal">ประเภทธุรกิจ:</label>
+                    <label for="catdropModal">Category:</label>
                     <select name="catin" class="catdrop form-control" id="catdropModal">
                       <!-- <option value="" selected="selected">Select cat</option> -->
                     </select>
                   </div>
                   <div class="form-group col-sm-6">
-                    <label for="bddropModal">อาคาร:</label>
+                    <label for="bddropModal">Building:</label>
                     <select name="bdin" class="cat2drop form-control" id="bddropModal">
                       <!-- <option value="" selected="selected">Select building</option> -->
                     </select>
                   </div>
                   <div class="form-group col-sm-6">
-                    <label for="floor">ชั้น:</label><br />
+                    <label for="floor">floor:</label><br />
                     <input name="floorin" class="form-control" type="number" id="floor" value="" />
                   </div>
                   <div class="form-group col-sm-6">
-                    <label for="code">รหัสพื้นที่:</label><br />
+                    <label for="code">area-code:</label><br />
                     <input name="codein" class="form-control" type="text" id="code" value="" />
                   </div>
                   <div class="form-group col-sm-6">
-                    <label for="owner">ชื่อผู้เช่า:</label><br />
+                    <label for="owner">owner:</label><br />
                     <input name="ownerin" class="form-control" type="text" id="owner" value="" />
                   </div>
                   <div class="form-group col-sm-6">
-                    <label for="name">ชื่อสถานที่:</label><br />
+                    <label for="name">agency-name(thai):</label><br />
                     <input name="namein" class="form-control" type="text" id="name" value="" />
                   </div>
                   <div class="form-group col-sm-6">
-                    <label for="engupname">ชื่อสถานที่(english):</label><br />
+                    <label for="engupname">agency-name(english):</label><br />
                     <input class="form-control" name="engnameupd" type="text" id="engupname" value="-" />
                   </div>
                   <div class="form-group col-sm-6">
-                    <label for="chiupname">ชื่อสถานที่(chinese):</label><br />
+                    <label for="chiupname">agency-name(chinese):</label><br />
                     <input class="form-control" name="chinameupd" type="text" id="chiupname" value="-" />
                   </div>
                 </div>
               </div>
 
-              <label for="detailupd">รายละเอียด:</label><br />
+              <label for="detailupd">detail(thai):</label><br />
               <textarea maxlength="200" class="form-control thdetail" name="th_upddetail" type="text" id="thupdatedetail" value=""></textarea>
               <div class="the-count-th" id="the-count">
                 <span id="thupdatecurrent" class="thcurrent">0</span>
@@ -209,7 +209,7 @@ include_once('../../authen.php');
               </div>
               <br />
 
-              <label for="eng_detail">รายละเอียด(eng)</label><br />
+              <label for="eng_detail">detail(eng)</label><br />
               <textarea maxlength="200" class="form-control engdetail" name="eng_upddetail" type="text" id="engupdatedetail" value="-"></textarea>
               <div class="the-count-th" id="the-count">
                 <span id="engupdatecurrent" class="engcurrent">0</span>
@@ -217,7 +217,7 @@ include_once('../../authen.php');
               </div>
               <br />
 
-              <label for="chi_detail">รายละเอียด(chinese)</label>
+              <label for="chi_detail">detail(chinese)</label>
               <textarea name="chi_upddetail" id="chiupdatedetail" maxlength="200" class="form-control chidetail" type="text" value="-"></textarea>
               <div class="the-count-chi" id="the-count">
                 <span id="chiupdatecurrent" class="chicurrent">0</span>
@@ -258,7 +258,7 @@ include_once('../../authen.php');
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Insertdata</h4>
+            <h4 class="modal-title">Insert Agency</h4>
             <button type="button" class="close" data-dismiss="modal">
               &times;
             </button>
@@ -276,7 +276,7 @@ include_once('../../authen.php');
               <div class="card-body">
                 <div class="form-row">
                   <div class="form-group col-sm-6">
-                    <label for="catdropinsmodal"> ประเภทธุรกิจ: </label>
+                    <label for="catdropinsmodal"> Category: </label>
                     <select class="form-control" name="catins" id="catdropinsmodal" required>
                       <option value="" selected="selected">
                         Select cat
@@ -285,52 +285,58 @@ include_once('../../authen.php');
                   </div>
 
                   <div class="form-group col-sm-6">
-                    <label for="bddropinsmodal">อาคาร:</label>
+                    <label for="bddropinsmodal">Building:</label>
                     <select class="form-control" name="bdins" id="bddropinsmodal" required>
                       <option value="" selected="selected">
                         Select building
                       </option>
                     </select>
                     <br />
-                    <input class="deletebuilding btn btn-danger" id="deletebuilding" type="button" value="deletebuilding" />
+                    <!-- <input class="deletebuilding btn btn-danger" id="deletebuilding" type="button" value="deletebuilding" /> -->
                   </div>
-
                   <div class="form-group col-sm-6">
-                    <label for="addbd">เพิ่มอาคาร(ใส่เมื่อต้องการเพิ่มเท่านั้น):</label><br />
-                    <input class="form-control" type="text" id="addbd" value="" />
-                    <br />
-                    <input class="btn btn-success" id="addbuild" type="button" value="addbuilding" />
-                  </div>
-
-                  <div class="form-group col-sm-6">
-                    <label for="addcat">เพิ่มหมวดหมู่(ใส่เมื่อต้องการเพิ่มเท่านั้น):</label><br />
+                    <label for="addcat">Add categoty(required when necessary):</label><br />
                     <input class="form-control" type="text" id="inputcat" value="" />
                     <br />
                     <input class="btn btn-success" id="addcategory" type="button" value="addcategory" />
                   </div>
 
                   <div class="form-group col-sm-6">
-                    <label for="floor">ชั้น:</label><br />
+                    <label for="addbd">Add building(require when necessary):</label><br />
+                    <input class="form-control" type="text" id="addbd" value="" />
+                    <br />
+                    <input class="btn btn-success" id="addbuild" type="button" value="addbuilding" />
+                  </div>
+
+                  <!-- <div class="form-group col-sm-6">
+                    <label for="addcat">เพิ่มหมวดหมู่(ใส่เมื่อต้องการเพิ่มเท่านั้น):</label><br />
+                    <input class="form-control" type="text" id="inputcat" value="" />
+                    <br />
+                    <input class="btn btn-success" id="addcategory" type="button" value="addcategory" />
+                  </div> -->
+
+                  <div class="form-group col-sm-6">
+                    <label for="floor">floor:</label><br />
                     <input class="form-control" name="floorins" type="number" id="floor" value="" />
                   </div>
                   <div class="form-group col-sm-6">
-                    <label for="code">รหัสพื้นที่:</label><br />
+                    <label for="code">area-code:</label><br />
                     <input class="form-control" name="codeins" type="text" id="code" value="-" />
                   </div>
                   <div class="form-group col-sm-6">
-                    <label for="owner">ชื่อผู้เช่า:</label><br />
+                    <label for="owner">owner:</label><br />
                     <input class="form-control" name="ownerins" type="text" id="owner" value="-" />
                   </div>
                   <div class="form-group col-sm-6">
-                    <label for="name">ชื่อสถานที่:</label><br />
+                    <label for="name">agency-name(thai):</label><br />
                     <input class="form-control" name="nameins" type="text" id="name" value="" required />
                   </div>
                   <div class="form-group col-sm-6">
-                    <label for="engname">ชื่อสถานที่(english):</label><br />
+                    <label for="engname">agency-name(english):</label><br />
                     <input class="form-control" name="engnameins" type="text" id="engname" value="-" />
                   </div>
                   <div class="form-group col-sm-6">
-                    <label for="chiname">ชื่อสถานที่(chinese):</label><br />
+                    <label for="chiname">agency-name(chinese):</label><br />
                     <input class="form-control" name="chinameins" type="text" id="chiname" value="-" />
                   </div>
                 </div>
@@ -398,7 +404,7 @@ include_once('../../authen.php');
                     value=""
                     required
                   /><br /><br /> -->
-              <label for="thinsdetail">รายละเอียด:</label><br />
+              <label for="thinsdetail">detail(thai):</label><br />
               <textarea maxlength="200" class="form-control thdetail" name="detailins" type="text" id="thinsdetail" value="-"></textarea>
               <div class="the-count-th" id="the-count">
                 <span id="thinsertcurrent" class="thcurrent">0</span>
@@ -406,7 +412,7 @@ include_once('../../authen.php');
               </div>
               <br />
 
-              <label for="eng_detail">รายละเอียด(eng)</label><br />
+              <label for="eng_detail">detail(eng)</label><br />
               <textarea maxlength="200" class="form-control engdetail" name="eng_insdetail" type="text" id="" value="-"></textarea>
               <div class="the-count-th" id="the-count">
                 <span id="enginsertcurrent" class="engcurrent">0</span>
@@ -414,7 +420,7 @@ include_once('../../authen.php');
               </div>
               <br />
 
-              <label for="chi_detail">รายละเอียด(chinese)</label>
+              <label for="chi_detail">detail(chinese)</label>
               <textarea name="chi_insdetail" id="" maxlength="200" class="form-control chidetail" type="text" value="-"></textarea>
               <div class="the-count-chi" id="the-count">
                 <span id="chiinsertcurrent" class="chicurrent">0</span>

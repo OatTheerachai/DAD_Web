@@ -502,6 +502,20 @@ $(document).ready(function () {
       buttons: [
         {
           extend: "excelHtml5",
+          action: function (e, dt, button, config) {
+            // alert("exporting an excel file");
+            $.post(url, { id: 5 }, function () {});
+            $.fn.dataTable.ext.buttons.excelHtml5.action.call(
+              this,
+              e,
+              dt,
+              button,
+              config
+            );
+            // if ($.fn.dataTable.ext.buttons.csvHtml5.available(dt, config)) {
+            //   $.fn.dataTable.ext.buttons.csvHtml5.action(e, dt, button, config);
+            // }
+          },
           exportOptions: {
             columns: [0, 2, 3, 6, 7, 8, 9, 12],
           },
