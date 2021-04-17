@@ -28,7 +28,7 @@ $(document).ready(function () {
         className: "align-middle",
         data: null,
         render: function (data, type, row) {
-          console.log(data.status);
+          // console.log(data.status);
           return `<div class="btn-group" role="group">
                     <input class="toggle-event" data-id="${data.ip_id}" type="checkbox" name="status" 
                         ${data.status == "true" ? "checked" : ""} data-toggle="toggle" data-on="เปิด" 
@@ -55,7 +55,7 @@ $(document).ready(function () {
                       <a href="form_edit_theme.php?id=${data.ip_id}" type="button" class="btn btn-warning">
                           <i class="far fa-edit"></i> แก้ไขธีม
                       </a>
-                      <button type="button" class="btn btn-info" id="delete" data-id="${data.ip_id}">
+                      <button type="button" class="ReStart btn btn-info" id="delete" data-id="${data.ip_id}">
                           <i class="fas fa-power-off"></i> Restart
                       </button>
                   </div>`;
@@ -72,8 +72,8 @@ $(document).ready(function () {
     order: [[1, "asc"]],
     initComplete: function () {
       $(".toggle-event").bootstrapToggle();
+      let id = $(this).data("id");
       $(".toggle-event").change(function () {
-        let id = $(this).data("id");
         $.ajax({
           type: "POST",
           url: "../../assets/lib/datareturn.php",
@@ -89,6 +89,34 @@ $(document).ready(function () {
           }, 2000);
         });
       });
+
+      $('.ReStart').on('click', function (e) {   
+        Swal.fire({
+          text: "คุณแน่ใจหรือไม่...ที่จะปิดเครื่องทั้งหมด?",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'ใช่',
+          cancelButtonText: 'ยกเลิก'
+      }).then((result) => {
+          if (result.isConfirmed) {
+              $.post("../../assets/lib/datareturn.php", {
+                  i: 133,
+                  id: id
+              }).done(function() {
+                  Swal.fire({
+                      text: 'รีสตาร์ทเครื่องทั้งหมดเรียบร้อยเเล้ว',
+                      icon: 'success',
+                      confirmButtonText: 'ตกลง',
+                  }).then((result) => {
+                      location.reload();
+                  });
+              })
+          }
+      })
+        
+    });
     },
     responsive: {
       details: {
@@ -112,13 +140,6 @@ $(document).ready(function () {
       search: "ค้นหา",
     },
   });
-  ip.on("order.dt search.dt", function () {
-    ip.column(0, { search: "applied", order: "applied" })
-      .nodes()
-      .each(function (cell, i) {
-        cell.innerHTML = i + 1;
-      });
-  }).draw();
 
   $('#shut_down').on('click', function (e) {   
         Swal.fire({

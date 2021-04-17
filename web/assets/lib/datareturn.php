@@ -403,6 +403,11 @@
                 $id = $_POST['id'];
                 echo logAdmin($id);
             break;
+            case 133:
+                $id = $_POST['id'];
+                // logAdmin(17);
+                echo queryData("UPDATE ip_address SET status = 2 WHERE ip_id = '$id'");
+            break;
         }
     }
 
