@@ -157,7 +157,7 @@ $(document).ready(function () {
   $("#submit_link").on("click", function (e) {
     let link = $("#link").val();
     let minute = $("#minute").val();
-    console.log(minute);
+    // console.log(minute);
     $.post("../../assets/lib/datareturn.php", {
       i: 123,
       link: link,
@@ -173,18 +173,6 @@ $(document).ready(function () {
       }
     });
   });
-
-  //  $("#front-size,#front-speed,#title_th").on("keyup change", function(e) {
-  //      let text = $("#title_th").val();
-  //      let f_size = $("#front-size").val();
-  //      let f_speed = $("#front-speed").val();
-
-  //     clearTimeout($("#front-size,#front-speed,#title_th").data('timer'));
-  //     $("#front-size,#front-speed,#title_th").data('timer', setTimeout(function(){
-  //         sendValue(text,f_size,f_speed);
-  //     }, 3000));
-
-  // })
 
   $.ajax({
     url: "../../assets/lib/datareturn.php", 
