@@ -72,8 +72,8 @@ $(document).ready(function () {
     order: [[1, "asc"]],
     initComplete: function () {
       $(".toggle-event").bootstrapToggle();
-      let id = $(this).data("id");
       $(".toggle-event").change(function () {
+        let id = $(this).data("id");
         $.ajax({
           type: "POST",
           url: "../../assets/lib/datareturn.php",
@@ -91,6 +91,7 @@ $(document).ready(function () {
       });
 
       $('.ReStart').on('click', function (e) {   
+        let id = $(this).data("id");
         Swal.fire({
           text: "คุณแน่ใจหรือไม่...ที่จะปิดเครื่องทั้งหมด?",
           icon: 'warning',
@@ -115,7 +116,6 @@ $(document).ready(function () {
               })
           }
       })
-        
     });
     },
     responsive: {
