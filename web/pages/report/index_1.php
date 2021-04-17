@@ -112,7 +112,7 @@
 <script src="../../assets/js/hamburger/adminlte.js"></script>
 
 <!-- <script src="http://code.jquery.com/jquery-1.9.1.js"></script> -->
-<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+<!-- <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script> -->
 <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
 
 

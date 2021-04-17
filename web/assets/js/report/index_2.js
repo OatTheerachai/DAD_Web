@@ -39,7 +39,7 @@ var information = $("#dataTable-event").DataTable({
     {
       extend: "excel",
       text: '<i class="far fa-file-excel"></i> Excel',
-      className: "btn btn-warning float-left",
+      className: "btn btn-warning float-left all",
     },
   ],
   ajax: {
@@ -153,7 +153,7 @@ function getDate_LogView() {
           {
             extend: "excel",
             text: '<i class="far fa-file-excel"></i> Excel',
-            className: "btn btn-warning float-left",
+            className: "btn btn-warning float-left time",
           },
         ],
         ajax: {
@@ -223,6 +223,12 @@ function getDate_LogView() {
         initComplete: function () {
           createDropdowns(this.api(),1,DropdownBuilding,"กรุณาเลือกอาคาร");
           createDropdowns(this.api(),3,DropdownCategory,"กรุณาเลือกประเภท");
+          $('.time').on('click',function(e) {
+            $.post("../../assets/lib/datareturn.php", {
+                i: 132,
+                id:8
+              });
+        });    
         },
         // responsive: {
         //   details: {
@@ -250,5 +256,10 @@ function getDate_LogView() {
   })
 }
 getDate_LogView();
-
+$('.all').on('click',function(e) {
+  $.post("../../assets/lib/datareturn.php", {
+      i: 132,
+      id: 8
+    });
+});    
 });

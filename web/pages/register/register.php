@@ -1,5 +1,8 @@
 <?php 
     include_once('../../authen.php'); 
+    if($_SESSION['role'] != "Superadmin"){
+        header('Location: ../dashboard/index.php');
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +10,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Config</title>
+  <title>Register</title>
 
   <!-- stylesheet -->
   <link rel="stylesheet" href="../../assets/vendor/plugins/fontawesome-free/css/all.min.css">
@@ -16,7 +19,6 @@
   <link rel="stylesheet" href="../../assets/vendor/plugins/bootstrap-toggle/bootstrap-toggle.min.css">
   <link rel="stylesheet" href="../../assets/vendor/plugins/toastr/toastr.min.css">
   <link rel="stylesheet" href="../../assets/vendor/plugins/@sweetalert2/theme-bootstrap-4/bootstrap-4.css">
-
 
 </head>
 <body class="hold-transition sidebar-mini">
@@ -31,7 +33,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-12">
-                            <h5 class="m-0 text-dark">Profile</h5>
+                            <!-- <h5 class="m-0 text-dark">Profile</h5> -->
                         </div>
                     </div>
                 </div>
@@ -43,7 +45,7 @@
                         <div class="col-10">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title" style="line-height: 2.1rem">Profile</h3>
+                                    <h3 class="card-title" style="line-height: 2.1rem">Register</h3>
                                     <!-- <a href="form_create_event.html" class="btn btn-primary float-right">เพิ่มข้อมูล</a> -->
                                 </div>
                                 <form id="formData">
@@ -51,22 +53,24 @@
                                     <div class="form-row">
                                         <div class="form-group col-sm-6">
                                             <label for="building">Firstname</label>
-                                            <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Firstname" required />
+                                            <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Firstname" required>
+                                            <!-- <span></span> -->
                                         </div>
 
                                         <div class="form-group col-sm-6">
                                             <label for="building">Lastname</label>
-                                            <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Lastname" required />
+                                            <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Lastname" required>
                                         </div>
 
                                         <div class="form-group col-sm-6">
                                             <label for="building">Email</label>
-                                            <input type="email" class="form-control" name="email" id="email" placeholder="Email" required />
+                                            <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+                                            <span></span>
                                         </div>
 
                                         <div class="form-group col-sm-6">
                                             <label for="building">Password</label>
-                                            <input type="password" class="form-control" name="password" id="password" placeholder="Password" required />
+                                            <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
                                         </div>
 
                                     </div>
@@ -98,41 +102,31 @@
 <!-- <script src="../../assets/vendor/plugins/bootstrap-toggle/bootstrap-toggle.min.js"></script> -->
 <script src="../../assets/vendor/plugins/toastr/toastr.min.js"></script>
 
-<script> 
+<!-- Create Me SCRIPTS -->
+<script src="../../assets/js/register.js"></script>
+<script type="text/javascript">
 $(document).ready(function() {
-    // $("#sidebar").load("../include/sidebar.html"); 
-        $.ajax({
-            url: "../../assets/lib/datareturn.php?i=1", 
-            success: function(result){
-                // console.log(result);
-                $("#firstname").val(result[0].firstname); 
-                $("#lastname").val(result[0].lastname); 
-                $("#email").val(result[0].email); 
-            }
+        $('#formData').on('submit', function (e) {
+            e.preventDefault();
+            $.post("../../assets/lib/datareturn.php", {
+                i: 105,
+                email: $('#email').val(),
+                password: $('#password').val(),
+                firstname: $('#firstname').val(),
+                lastname: $('#lastname').val(),
+            })
+            .done(function(resp) {
+                if(resp.data === "Success"){
+                  toastr.success('สมัครสมาชิกเรียบร้อย')
+                  setTimeout(() => {
+                    window.location.reload();
+                  }, 800);
+                }
+                else {
+                    toastr.error('ชื่อผู้ใช้งานถูกใช้เเล้ว')
+                }
         });
-
-    $('#formData').on('submit', function (e) {
-        e.preventDefault();
-        $.post("../../assets/lib/datareturn.php", {
-        i: 103,
-        firstname: $("#firstname").val(),
-        lastname:$("#lastname").val(),
-        email:$("#email").val(),
-        pass:$("#password").val(),
-    }).done(function(resp) {
-        // console.log("test");
-        // console.log(resp);
-        if(resp.data === "Success"){
-            toastr.success('เเก้ไข้ข้อมูลเรียบร้อยเเล้ว')
-            setTimeout(() => {
-                window.location.reload();
-            }, 800);
-        }
-        else {
-            toastr.error('ข้อมูลไม่ถูกต้อง')
-        }
     });
-});
 })
 </script> 
 </body>

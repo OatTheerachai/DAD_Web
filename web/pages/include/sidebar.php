@@ -20,7 +20,7 @@
         <img src="../../assets/img/logo.png" alt="Admin Logo" class="brand-image img-circle elevation-3">
         <span class="brand-text font-weight-light">Logo Project</span>
     </a>
-    <div class="sidebar">
+    <div class="sidebar mb-8">
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
                 <img src="../../assets/img/user1.png" class="img-circle elevation-2" alt="User Image">
@@ -37,6 +37,15 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
+                <?php
+                    if($_SESSION['role'] == "Superadmin") {
+                        echo '<li class="nav-item">' . 
+                        '<a href="../admin/index.php" class="nav-link ' . isActive ("admin").'">'.
+                        '<i class="nav-icon fas fa-file-alt"></i>'.
+                        '<p>Log Admin</p>'.
+                    '</a>';
+                    }
+                ?>
                 <li class="nav-item">
                     <a href="../catagory/index.php" class="nav-link <?php echo isActive('catagory') ?>">
                         <i class="nav-icon fas fa-file-alt"></i>
@@ -55,7 +64,6 @@
                         <p>Information</p>
                     </a>
                 </li>
-
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link <?php echo isActive('report') ?>">
               <i class="nav-icon fas fa-th"></i>
@@ -108,11 +116,21 @@
                         <p>Profile</p>
                     </a>
                 </li>
-                <li class="nav-header">บัญชีของเรา</li>
+                <?php
+                    if($_SESSION['role'] == "Superadmin") {
+                        echo '<li class="nav-item">' . 
+                        '<a href="../register/register.php" class="nav-link ' . isActive ("register").'">'.
+                        '<i class="nav-icon fas fa-file-alt"></i>'.
+                        '<p>Log Admin</p>'.
+                    '</a>';
+                    }
+                ?>
+                <!-- <li class="nav-header">Account</li> -->
                 <li class="nav-item">
                     <a href="../../logout.php" id="logout" class="nav-link">
-                        <i class="fas fa-sign-out-alt"></i>
-                        <p>ออกจากระบบ</p>
+                        <!-- <i class="fas fa-sign-out-alt"></i> -->
+                        <i class="nav-icon fas fa-power-off"></i>
+                        <p>Logout</p>
                     </a>
                 </li>
             </ul>
@@ -120,9 +138,3 @@
     </div>
 </aside>
 
-<!-- <script src="../../assets/vendor/plugins/jquery/jquery.min.js"></script>
-<script>
-$('#sub1').on('click', function (e) {   
-    $('#submenu').addClass("menu-open");
-});
-</script> -->

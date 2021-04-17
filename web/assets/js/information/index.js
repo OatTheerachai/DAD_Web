@@ -1,31 +1,16 @@
 $(document).ready(function () {
   var event = $("#dataTable-event").DataTable({
     processing: true,
-    // responsive: true,
-    // scrollCollapse: true,
-    // autoWidth: false,
-    // scrollY:        "300px",
     scrollX: true,
     ajax: {
       url: "../../assets/lib/datareturn.php?i=3",
       type: "GET",
     },
-    // columnDefs: [ {
-    // targets: 3,
-    // render: function ( data, type, row ) {
-    //     return data.substr( 0, 50 );
-    // }
-    // } ],
-    // fixedColumns:   true,
-    // fixedColumns: {
-    //     leftColumns: 1,
-    //     // rightColumns: 1
-    // },
     columns: [
       {
         title: "ลำดับ",
         className: "align-middle",
-        data: null,
+        data: "id",
       },
       {
         title: "หัวข้อ",
@@ -41,11 +26,6 @@ $(document).ready(function () {
         title: "รายละเอียด",
         className: "align-middle",
         data: "detail",
-        // render: function ( data, type, row ) {
-        //     return type === 'display' && data.detail.length > 60 ?
-        //     data.detail.substr( 0, 10 ) +'.....'
-        //     : data.detail;
-        // }
       },
       {
         title: "จัดการ",
@@ -75,7 +55,7 @@ $(document).ready(function () {
     initComplete: function () {
       $(document).on("click", "#delete", function () {
         let id = $(this).data("id");
-        console.log(id);
+        // console.log(id);
         Swal.fire({
           text: "คุณแน่ใจหรือไม่...ที่จะลบรายการนี้?",
           icon: "warning",
@@ -124,16 +104,16 @@ $(document).ready(function () {
       search: "ค้นหา",
     },
   });
-  event
-    .on("order.dt search.dt", function () {
-      event
-        .column(0, { search: "applied", order: "applied" })
-        .nodes()
-        .each(function (cell, i) {
-          cell.innerHTML = i + 1;
-        });
-    })
-    .draw();
+  // event
+  //   .on("order.dt search.dt", function () {
+  //     event
+  //       .column(0, { search: "applied", order: "applied" })
+  //       .nodes()
+  //       .each(function (cell, i) {
+  //         cell.innerHTML = i + 1;
+  //       });
+  //   })
+  //   .draw();
 
   // set defualt text package
   $.ajax({
@@ -176,9 +156,12 @@ $(document).ready(function () {
 
   $("#submit_link").on("click", function (e) {
     let link = $("#link").val();
+    let minute = $("#minute").val();
+    console.log(minute);
     $.post("../../assets/lib/datareturn.php", {
       i: 123,
       link: link,
+      minute: minute
     }).done(function (resp) {
       if (resp.data == "Success") {
         toastr.success("บันทึกข้อมูลเรียบร้อย");
@@ -202,14 +185,16 @@ $(document).ready(function () {
   //     }, 3000));
 
   // })
-  document.getElementById("submit_link").onclick = function () {
-    let inputurl = document.getElementById("link").val;
-    $.post(
-      "../../assets/lib/updateLiveURL.php",
-      { liveURL: inputurl },
-      function (data, status) {
-        console.log(status);
-      }
-    );
-  };
+
+  $.ajax({
+    url: "../../assets/lib/datareturn.php", 
+    type: 'post',
+    data: {
+        i:125
+    },
+    success: function(res){
+      $('#link').val(res[0].liveURL);
+      $('#minute').val(res[0].time_video);
+    }
+  });
 });

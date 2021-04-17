@@ -105,8 +105,14 @@ include_once('../../authen.php');
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-3 text-center" style="padding:10px;">
-                                                <button type="button" class="btn btn-primary btn-block" name="submit" id="submit">บันทึกข้อมูล</button>
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-sm"></div>
+                                                    <div class="col-sm" style="padding:10px;">
+                                                        <button type="button" class="btn btn-primary btn-block" name="submit" id="submit">บันทึกข้อมูล</button>
+                                                    </div>
+                                                    <div class="col-sm"></div>
+                                                </div>
                                             </div>
                                         </div>
                                     </form>
@@ -123,9 +129,21 @@ include_once('../../authen.php');
                                                 <div class="form-group col-sm-6">
                                                     <input type="text" class="form-control" name="title" id="link" placeholder="กรุณาใส่ URL" required>
                                                 </div>
+                                                <div class="form-group col-sm-6">
+                                                    <input type="number" class="form-control" name="title" id="minute" placeholder="กรุณาใส่เวลา (นาที)" required>
+                                                </div>
                                             </div>
-                                            <div class="col-3 text-center" style="padding:10px;">
+                                            <!-- <div class="col-3 text-center" style="padding:10px;">
                                                 <input type="button" class="btn btn-primary btn-block" name="submit" id="submit_link">บันทึกข้อมูล</input>
+                                            </div> -->
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-sm"></div>
+                                                    <div class="col-sm" style="padding:10px;">
+                                                        <button type="button" class="btn btn-primary btn-block" name="submit" id="submit_link">บันทึกข้อมูล</button>
+                                                    </div>
+                                                    <div class="col-sm"></div>
+                                                </div>
                                             </div>
                                         </div>
                                     </form>
@@ -164,12 +182,6 @@ include_once('../../authen.php');
 
         <!-- Create Me SCRIPTS -->
         <script src="../../assets/js/information/index.js"></script>
-
-        <!-- <script> 
-    $(document).ready(function() {
-        $("#sidebar").load("../include/sidebar.html"); 
-    });
-    </script>  -->
 
 </body>
 

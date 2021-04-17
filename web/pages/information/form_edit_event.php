@@ -101,9 +101,18 @@
                                     <!-- <div class="card-footer">
                                         <button type="submit" class="btn btn-primary btn-block" name="submit" id="submit">บันทึกข้อมูล</button>
                                     </div> -->
-                                    <div class="col-2 text-center" style="padding:10px;">
+                                    <div class="container">
+                                                <div class="row">
+                                                    <div class="col-sm"></div>
+                                                    <div class="col-sm" style="padding:10px;">
+                                                        <button type="submit" class="btn btn-primary btn-block" name="submit" id="submit">บันทึกข้อมูล</button>
+                                                    </div>
+                                                    <div class="col-sm"></div>
+                                                </div>
+                                            </div>
+                                    <!-- <div class="col-2 text-center" style="padding:10px;">
                                         <button type="submit" class="btn btn-primary btn-block" name="submit" id="submit">บันทึกข้อมูล</button>
-                                </div>
+                                </div> -->
                                 </form>
                             </div>
                         </div>

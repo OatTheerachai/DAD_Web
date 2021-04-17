@@ -57,22 +57,22 @@
             </span>
             
 
-            <div class="wrap-input validate-input" data-validate="Valid username is required">
-                <input class="input" id="email" type="text" name="email" placeholder="E-mail">
+            <div class="wrap-input validate-input" data-validate="Valid username is required" >
+                <input class="input" id="email" type="email" name="email" placeholder="E-mail" required />
             </div>
 
             <div class="wrap-input validate-input" data-validate="Password is required">
-                <input class="input" id="password" type="password" name="password" placeholder="Password">
+                <input class="input" id="password" type="password" name="password" placeholder="Password" required>
             </div>
 
-            <button name="submit" class="btn btn-primary btn-block" type="submit" name="LoginBT" id="LoginBT"> เข้าสู่ระบบ</button>
-            <div class="text-center p-t-46 p-b-20">
+            <button name="submit" class="btn btn-primary btn-block" type="submit" name="LoginBT" id="LoginBT">Login</button>
+            <!-- <div class="text-center" style="padding: 20px;">
                 <span class="txt2">
-                    <a href="register.html">
-                        or sign up using
+                    <a href="">
+                        sign up
                     </a>
                 </span>
-            </div>
+            </div> -->
           </form>
         </div>
       </div>
@@ -91,6 +91,14 @@
     <script type="text/javascript">
 
     $(document).ready(function(){
+    //   $('#email input[type=email]').on('change invalid', function() {
+    //     var textfield = $(this).get(0);
+    //     textfield.setCustomValidity('');
+        
+    //     if (!textfield.validity.valid) {
+    //       textfield.setCustomValidity('กรุณากรอก E-mail');  
+    //     }
+    // });
         $('#formData').on('submit', function (e) {
             e.preventDefault();
             $.post("assets/lib/datareturn.php", {
@@ -105,9 +113,8 @@
                   }, 800);
                 }
                 else {
-                  toastr.error('รหัสผ่านไม่ถูกต้อง');
+                  toastr.error('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง');
                 }
-
         });
     });
 });

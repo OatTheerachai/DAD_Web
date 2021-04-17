@@ -38,7 +38,7 @@
             case 10:
                 echo '{"data":'.selectDataSQL("SELECT event.*,event_type.name,COUNT(log_event.event_id) as Views FROM event 
                     INNER JOIN event_type ON event.et_id = event_type.id 
-                    LEFT JOIN log_event ON event.id = log_event.event_id 
+                    LEFT JOIN log_event ON event.gen_id = log_event.event_id 
                     WHERE show_status = 1
                     group by event.id")."}";
             break;
@@ -54,49 +54,39 @@
                 break;
             case 12:
                 $data =  json_decode(selectDataSQL("SELECT agency_item.name,COUNT(log_agency.agen_id) as Views FROM agency_item
-                LEFT JOIN log_agency ON agency_item.id = log_agency.agen_id
+                LEFT JOIN log_agency ON agency_item.kiosk_id = log_agency.agen_id
                 WHERE show_status = 1
                 group by agency_item.id
                 ORDER BY Views DESC
-                LIMIT 5"),true);
+                LIMIT 10"),true);
                 $view = [];
                 $name = [];
-                $colorChar = [];
-                $color = ['#00FFFF','#FF8000','#FF99FF','#80FF00','#00FF00'];
                 foreach($data as $key=>$value) {
                     $view[$key] = $value['Views'];
                     $name[$key] = $value['name'];
-                    $colorChar[$key] = $color[$key];
                 }
                 $newdata;
                 $newdata['view'] = $view;
                 $newdata['name'] = $name;
-                $newdata['color'] = $colorChar;
-
-                // print_r($newdata);
+                // echo json_encode($data);
                 echo json_encode($newdata);
                 break;
             case 13:
                 $data =  json_decode(selectDataSQL("SELECT event.title,COUNT(log_event.event_id) as Views FROM event
-                LEFT JOIN log_event ON event.id = log_event.event_id
+                LEFT JOIN log_event ON event.gen_id = log_event.event_id
                 WHERE show_status = 1
                 group by event.id
                 ORDER BY Views DESC
-                LIMIT 5"),true);
+                LIMIT 10"),true);
                 $view = [];
                 $name = [];
-                $colorChar = [];
-                $color = ['#00FFFF','#FF8000','#FF99FF','#80FF00','#00FF00'];
                 foreach($data as $key=>$value) {
                     $view[$key] = $value['Views'];
                     $name[$key] = $value['title'];
-                    $colorChar[$key] = $color[$key];
                 }
                 $newdata;
                 $newdata['view'] = $view;
                 $newdata['name'] = $name;
-                $newdata['color'] = $colorChar;
-                // print_r($newdata);
                 echo json_encode($newdata);
             break;
             case 14:
@@ -104,7 +94,7 @@
                 $end_date = $_GET['end_date'];
                 echo '{"data":'.selectDataSQL("SELECT event.*,event_type.name,COUNT(log_event.event_id) as Views FROM event 
                     INNER JOIN event_type ON event.et_id = event_type.id 
-                    LEFT JOIN log_event ON event.id = log_event.event_id 
+                    LEFT JOIN log_event ON event.gen_id = log_event.event_id 
                     WHERE show_status = 1 AND  DATE(time) BETWEEN '$start_date' AND '$end_date'
                     group by event.id")."}";
             break;
@@ -120,22 +110,67 @@
                     WHERE show_status = 1 AND  DATE(time) BETWEEN '$start_date' AND '$end_date'
                     group by agency_item.id")."}";
             break;
+            case 16:
+                $start_date = $_GET['start_date'];
+                $end_date = $_GET['end_date'];
+                $data =  json_decode(selectDataSQL("SELECT agency_item.name,COUNT(log_agency.agen_id) as Views FROM agency_item
+                LEFT JOIN log_agency ON agency_item.kiosk_id = log_agency.agen_id
+                WHERE show_status = 1 AND DATE(time) BETWEEN '$start_date' AND '$end_date'
+                group by agency_item.id
+                ORDER BY Views DESC
+                LIMIT 10"),true);
+                $view = [];
+                $name = [];
+                foreach($data as $key=>$value) {
+                    $view[$key] = $value['Views'];
+                    $name[$key] = $value['name'];
+                }
+                $newdata;
+                $newdata['view'] = $view;
+                $newdata['name'] = $name;
+
+                echo json_encode($newdata);
+            break;
+            case 17:
+                $start_date = $_GET['start_date'];
+                $end_date = $_GET['end_date'];
+                $data =  json_decode(selectDataSQL("SELECT event.title,COUNT(log_event.event_id) as Views FROM event
+                LEFT JOIN log_event ON event.gen_id = log_event.event_id
+                WHERE show_status = 1 AND DATE(time) BETWEEN '$start_date' AND '$end_date'
+                group by event.id
+                ORDER BY Views DESC
+                LIMIT 10"),true);
+                $view = [];
+                $name = [];
+                foreach($data as $key=>$value) {
+                    $view[$key] = $value['Views'];
+                    $name[$key] = $value['title'];
+                }
+                $newdata;
+                $newdata['view'] = $view;
+                $newdata['name'] = $name;
+
+                echo json_encode($newdata);
+            break;
         }
     }
     else if(isset($_POST["i"])){
         switch($_POST["i"]){
             case 102:
                 $id = $_POST['id'];
+                logAdmin(22);
                 echo queryData("UPDATE event SET show_status = 0 WHERE id='$id'");
             break;
             case 103:
-                $id = $_POST['id'];
+                $id = $_SESSION['uid'];
                 $firstname = $_POST['firstname'];
                 $lastname = $_POST['lastname'];
                 $email = $_POST['email'];
                 $pass = $_POST['pass'];
                 $pass = sha1(md5($pass));
-                echo queryData("UPDATE users SET email = '$email',firstname ='$firstname', lastname = '$lastname', password='$pass' WHERE id='$id'");
+                logAdmin(23);
+                echo queryData("UPDATE users SET email = '$email',firstname ='$firstname', lastname = '$lastname', 
+                password='$pass',modified = CURRENT_TIMESTAMP() WHERE id='$id'");
             break;
             case 104:
                 $email = $_POST['email'];
@@ -151,6 +186,7 @@
                 
                 $check = checkData1field($email);
                 if($check === true) {
+                    logAdmin(24);
                     echo queryData("INSERT INTO users (firstname,lastname,email,password) VALUE ('$firstname','$lastname','$email','$pass')");
                 }
                 else {
@@ -163,6 +199,7 @@
                 $title = $_POST['title'];
                 $event_type = $_POST['event_type'];
                 $details = $_POST['details'];
+                logAdmin(20);
                 $id = queryDataLastID("INSERT INTO event (title,detail,et_id,show_status) VALUE ('$title','$details','$event_type',1)");
                 // echo $id;
                 $last_id = json_decode($id,true);
@@ -191,15 +228,7 @@
                 $text_ch = $_POST['text_ch'];
                 $f_size = $_POST['f_size'];
                 $f_speed = $_POST['f_speed'];
-                // echo queryData("UPDATE form_config SET text_th='$text_th',text_eng='$text_eng',
-                // text_ch='$text_ch',f_size='$f_size',f_speed='$f_speed' WHERE id=1");
-                // echo queryData("UPDATE form_config as fc JOIN (
-                //     SELECT 1 as id, '$text_th' as new_text, '$f_size' as new_f_size, '$f_speed' as new_f_speed
-                //     UNION ALL
-                //     SELECT 2 ,'$text_eng', '$f_size', '$f_speed'
-                //     UNION ALL
-                //     SELECT 3 '$text_ch', '$f_size', '$f_speed'
-                //     ) vals ON fc.id = vals.id SET text = new_text,f_size = new_f_size, f_speed = new_f_speed");
+                logAdmin(18);
                 echo queryData("INSERT INTO form_config 
                 (id, text, f_size, f_speed)
                 VALUES 
@@ -217,6 +246,7 @@
             break;
             case 110:
                 $id = $_POST['e_id'];
+                logAdmin(21);
                 // echo $id;
                 // echo selectDataSQL("SELECT * FROM picture WHERE e_id = $id");
                 $data = json_decode(selectDataSQL("SELECT * FROM picture WHERE e_id = $id"),true);
@@ -282,6 +312,7 @@
             break;
             case 117:
                 $data_theme = json_decode(upload_theme(),true);
+                logAdmin(15);
                 foreach($data_theme as $key=>$value) {
                     $nmae = $value['name'];
                     $gen_name = $value['gen_name'];
@@ -302,6 +333,7 @@
             break;
             case 120:
                 $t_id = $_POST['t_id'];
+                logAdmin(16);
                 echo queryData("UPDATE ip_address SET t_id = '$t_id'");
             break;
             case 121:
@@ -310,11 +342,66 @@
                 echo queryData("UPDATE ip_address SET t_id = '$t_id' WHERE ip_id = '$id'");
             break;
             case 122:
+                logAdmin(14);
                 echo queryData("UPDATE ip_address SET status = 0");
             break;
             case 123:
                 $link = $_POST['link'];
-                echo queryData("UPDATE form_config SET link = '$link' WHERE id = 1");
+                $minute = $_POST['minute'];
+                echo queryData("UPDATE ip_address SET liveURL = '$link', time_video = '$minute'");
+            break;
+            case 124:
+                $data = json_decode(selectDataSQL("SELECT time_video,liveURL FROM ip_address WHERE ip_id='1'"),true);
+                foreach($data as $key=>$value){
+                    $data[$key]['time_video'] = $data[$key]['time_video'] * 60 * 1000;
+                }
+                echo json_encode($data);
+            break;
+            case 125:
+                echo selectDataSQL("SELECT time_video,liveURL FROM ip_address WHERE ip_id='1'");
+            break;
+            case 126:
+                $email = $_POST['email'];
+                echo checkEmail($email);
+            break;
+            case 127:
+                logAdmin(19);
+                echo '{"data":'.selectDataSQL("SELECT log_admin.*,CONCAT(users.firstname,' ',users.lastname) as user,
+                    count(log_admin.user_id) as log FROM log_admin
+                    INNER JOIN admin_activity ON log_admin.activity_id = admin_activity.id
+                    JOIN users ON users.id = log_admin.user_id GROUP BY users.id
+                    ").'}';
+                    
+                    // foreach($data as $key=>$value){
+                    //     $id = $data[$key]['user_id'];
+                    //     $data[$key]['log_admin'] = json_decode(selectDataSQL("SELECT log_admin.id,admin_activity.name,log_admin.timestamp FROM log_admin
+                    //         INNER JOIN admin_activity ON log_admin.activity_id = admin_activity.id
+                    //         WHERE user_id = '$id'"),true);;
+                    // }
+                // echo '{"data":'.json_encode($data).'}';
+            break;
+            case 128:
+                $id = $_POST['id'];
+                echo '{"data":'.selectDataSQL("SELECT log_admin.id,admin_activity.name,log_admin.timestamp FROM log_admin
+                            INNER JOIN admin_activity ON log_admin.activity_id = admin_activity.id
+                            WHERE user_id = '$id'").'}';
+            break;
+            case 129:
+                echo '{"data":'.selectDataSQL("SELECT agency_item.*,building.name as bd_name,category.name as cat_name FROM agency_item 
+                    JOIN building ON building.id = agency_item.bd_id JOIN category ON category.id = agency_item.cat_id 
+                    WHERE changed_status = 1")."}";
+            break;
+            case 130:
+                logAdmin(13);
+                echo queryData("UPDATE ip_address SET status = 1");
+            break;
+            case 131:
+                logAdmin(17);
+                echo queryData("UPDATE ip_address SET status = 2");
+            break;
+            case 132:
+                $id = $_POST['id'];
+                echo logAdmin($id);
             break;
         }
     }

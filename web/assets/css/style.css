@@ -1,7 +1,7 @@
 
 body, html {
     height: 100%;
-    font-size: 0.95rem !important;
+    font-size: 0.99rem !important;
 }
 
 img {
@@ -138,11 +138,11 @@ input.input {
     transition: all 0.4s;
 }
 
-.text-center {
+/* .text-center {
     margin: auto;
     width: 60%;
     padding: 30px;
-  }
+  } */
 
   .dz-preview .dz-image img{
     width: 100% !important;
@@ -175,6 +175,7 @@ div.dataTables_wrapper {
   margin: 0 auto;
 
 }
+
 
 
 

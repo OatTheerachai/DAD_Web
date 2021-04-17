@@ -52,8 +52,14 @@
                                 <div class="card-header">
                                     <h3 class="card-title" style="line-height: 2.1rem">Config</h3>
                                     <!-- <button type="button" class="btn btn-danger float-right">ปิดเครื่อง</button> -->
+                                    <button type="button" class="btn btn-info float-right" id="ReStart">
+                                        <i class="fas fa-power-off"></i> Restart
+                                    </button>
                                     <button type="button" class="btn btn-danger float-right" id="shut_down">
-                                        <i class="fas fa-power-off"></i> ปิดเครื่อง
+                                        <i class="fas fa-power-off"></i> Open
+                                    </button>
+                                    <button type="button" class="btn btn-success float-right" id="open">
+                                        <i class="fas fa-power-off"></i> Shut down
                                     </button>
                                     <a href="theme.php" class="btn btn-primary float-right">เพิ่มธีม</a>
                                 </div>

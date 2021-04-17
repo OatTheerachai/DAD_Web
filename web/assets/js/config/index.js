@@ -28,6 +28,7 @@ $(document).ready(function () {
         className: "align-middle",
         data: null,
         render: function (data, type, row) {
+          console.log(data.status);
           return `<div class="btn-group" role="group">
                     <input class="toggle-event" data-id="${data.ip_id}" type="checkbox" name="status" 
                         ${data.status == "true" ? "checked" : ""} data-toggle="toggle" data-on="เปิด" 
@@ -84,7 +85,6 @@ $(document).ready(function () {
         }).done(function (resp) {
           toastr.success("อัพเดทข้อมูลเรียบร้อย");
           setTimeout(() => {
-            // ip.ajax.reload();
             window.location.reload();
           }, 2000);
         });
@@ -135,7 +135,7 @@ $(document).ready(function () {
                   i: 122,
               }).done(function() {
                   Swal.fire({
-                      text: 'ปิดเครื่องทั้งหมดเรยบร้อยเเล้ว',
+                      text: 'ปิดเครื่องทั้งหมดเรียบร้อยเเล้ว',
                       icon: 'success',
                       confirmButtonText: 'ตกลง',
                   }).then((result) => {
@@ -144,8 +144,60 @@ $(document).ready(function () {
               })
           }
       })
-        
     });
+
+    $('#open').on('click', function (e) {   
+      Swal.fire({
+        text: "คุณแน่ใจหรือไม่...ที่จะปิดเครื่องทั้งหมด?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'ใช่',
+        cancelButtonText: 'ยกเลิก'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.post("../../assets/lib/datareturn.php", {
+                i: 130,
+            }).done(function() {
+                Swal.fire({
+                    text: 'เปิดเครื่องทั้งหมดเรียบร้อยเเล้ว',
+                    icon: 'success',
+                    confirmButtonText: 'ตกลง',
+                }).then((result) => {
+                    location.reload();
+                });
+            })
+        }
+    })
+  });
+
+  $('#ReStart').on('click', function (e) {   
+    Swal.fire({
+      text: "คุณแน่ใจหรือไม่...ที่จะปิดเครื่องทั้งหมด?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'ใช่',
+      cancelButtonText: 'ยกเลิก'
+  }).then((result) => {
+      if (result.isConfirmed) {
+          $.post("../../assets/lib/datareturn.php", {
+              i: 131,
+          }).done(function() {
+              Swal.fire({
+                  text: 'รีสตาร์ทเครื่องทั้งหมดเรียบร้อยเเล้ว',
+                  icon: 'success',
+                  confirmButtonText: 'ตกลง',
+              }).then((result) => {
+                  location.reload();
+              });
+          })
+      }
+  })
+    
+});
 });
 
 

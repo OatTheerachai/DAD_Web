@@ -62,8 +62,14 @@
     
                                         </div>
                                     </div>
-                                    <div class="col-2 text-center" style="padding:10px;">
-                                        <button type="button" class="btn btn-primary btn-block" name="submit_theme" id="submit_theme">บันทึกข้อมูล</button>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-sm"></div>
+                                        <div class="col-sm text-center" style="padding:10px;">
+                                            <button type="button" class="btn btn-primary btn-block" name="submit_theme" id="submit_theme">บันทึกข้อมูล</button>
+                                        </div>
+                                        <div class="col-sm"></div>
+                                    </div>
                                 </div>
                                 </form>
                             </div>

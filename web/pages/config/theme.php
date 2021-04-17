@@ -85,10 +85,18 @@
                                                     </div>
                                     </div>
                                 </div>
-                                <div class="col-2 text-center" style="padding:10px;">
+                                <!-- <div class="col-2 text-center" style="padding:10px;">
                                         <button type="submit" class="btn btn-primary btn-block" name="submit" id="submit">บันทึกข้อมูล</button>
+                                </div> -->
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-sm"></div>
+                                        <div class="col-sm text-center" style="padding:10px;">
+                                            <button type="submit" class="btn btn-primary btn-block" name="submit" id="submit">บันทึกข้อมูล</button>
+                                        </div>
+                                        <div class="col-sm"></div>
+                                    </div>
                                 </div>
-
                                 </div>
                                 </form>
                             </div>
@@ -111,8 +119,17 @@
                                         <!-- <option data-img-src="../../assets/img/bg1.jpg" width="200" height="200" value="1"></option> -->
                                       </select>
                                 </div>
-                                <div class="col-2 text-center" style="padding:10px;">
+                                <!-- <div class="col-2 text-center" style="padding:10px;">
                                     <button type="button" class="btn btn-primary btn-block" name="submit_theme" id="submit_theme">บันทึกข้อมูล</button>
+                                </div> -->
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-sm"></div>
+                                        <div class="col-sm text-center" style="padding:10px;">
+                                    <button type="button" class="btn btn-primary btn-block" name="submit_theme" id="submit_theme">บันทึกข้อมูล</button>
+                                </div>
+                                        <div class="col-sm"></div>
+                                    </div>
                                 </div>
                                 </div>
                                 </form>

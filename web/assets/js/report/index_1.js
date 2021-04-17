@@ -64,11 +64,19 @@ $(document).ready(function () {
     // },
     dom: "Bfrtip",
     buttons: [
+<<<<<<< Updated upstream
       {
         extend: "excel",
         text: '<i class="far fa-file-excel"></i> Excel',
         className: "btn btn-warning float-left",
       },
+=======
+        {
+            extend: 'excel',
+            text: '<i class="far fa-file-excel"></i> Excel',
+            className: 'btn btn-warning float-left all'
+          }
+>>>>>>> Stashed changes
     ],
     ajax: {
       url: "../../assets/lib/datareturn.php",
@@ -134,8 +142,119 @@ $(document).ready(function () {
     oLanguage: {
       sProcessing: "loading...",
     },
+<<<<<<< Updated upstream
   });
   event.buttons().container().appendTo($("#excel"));
+=======
+})
+ event.buttons().container().appendTo($('#excel'));
+
+    $("#start_date,#end_date").on("change", function(e) {
+        // date = $("#date").val();
+        let start_date = $('#start_date').val();
+        let end_date = $('#end_date').val();
+        if ( $.fn.dataTable.isDataTable( '#dataTable-event' ) ) {
+            event.destroy();
+            $('#dataTable-event').empty(); 
+            DropdownCategory.empty();
+        }
+        event = $('#dataTable-event').DataTable( {
+            processing: true,
+            responsive: true,
+            scrollX: true,
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excel',
+                    text: '<i class="far fa-file-excel"></i> Excel',
+                    className: 'btn btn-warning float-left time'
+                  }
+            ],
+            ajax: 
+            {
+                url: '../../assets/lib/datareturn.php',
+                data: {
+                    i:14,
+                    start_date: start_date,
+                    end_date: end_date,
+                },
+                type: 'GET',
+            },
+            columns: [
+                { 
+                    title: "หัวข้อ",
+                    className: "align-middle",
+                    data: 'title'
+                },
+                { 
+                    title: "ประเภท",
+                    className: "align-middle",
+                    data: 'name'
+                },
+                { 
+                    title: "รายละเอียด",
+                    className: "align-middle",
+                    data: 'detail'
+                },
+                { 
+                    title: "จำนวนการเข้าชม",
+                    className: "align-middle",
+                    data: 'Views',
+                },
+            ],
+            "columnDefs": [{
+                   "searchable": false,
+                   "orderable": false,
+                   "targets": 0
+            }],
+            order: [[1, "asc"]],
+            "initComplete": function () {
+                createDropdowns(this.api(),1,DropdownCategory,"กรุณาเลือกประเภท");
+                $('.time').on('click',function(e) {
+                    console.log("test");
+                    $.post("../../assets/lib/datareturn.php", {
+                        i: 132,
+                        id:9
+                      });
+                });    
+            },
+            // responsive: {
+            //     details: {
+            //         display: $.fn.dataTable.Responsive.display.modal( {
+            //             header: function ( row ) {
+            //                 var data = row.data();
+            //                 return data.title;
+            //             }
+            //         } ),
+            //         renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+            //             tableClass: 'table'
+            //         } )
+            //     }
+            // },
+            "language": {
+                    "lengthMenu": "แสดงข้อมูล _MENU_ แถว",
+                    "zeroRecords": "ไม่พบข้อมูลที่ต้องการ",
+                    "info": "แสดงหน้า _PAGE_ จาก _PAGES_",
+                    "infoEmpty": "ไม่พบข้อมูลที่ต้องการ",
+                    "infoFiltered": "(filtered from _MAX_ total records)",
+                    "search": 'ค้นหา',
+                    "processing": "Loading..."
+            },
+            oLanguage: {
+                sProcessing: "loading..."
+            },
+        })
+        event.buttons().container().appendTo($('#excel'));
+    })
+
+    $('.all').on('click',function(e) {
+        $.post("../../assets/lib/datareturn.php", {
+            i: 132,
+            id:9
+          });
+    });    
+
+>>>>>>> Stashed changes
 
   function getDate_LogView() {
     $("#start_date,#end_date").on("change", function (e) {

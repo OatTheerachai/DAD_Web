@@ -42,28 +42,29 @@
                   <span class="login-form-title">
                       Register
                   </span>
-      
-                  <div class="wrap-input validate-input" data-validate="Valid username is required">
+
+                    <div class="wrap-input validate-input" data-validate="Valid username is required">
                       <input class="input" id="email" type="text" name="email" placeholder="E-mail">
-                  </div>
-      
-                  <div class="wrap-input validate-input" data-validate="Password is required">
-                      <input class="input" id="password" type="password" name="password" placeholder="Password">
-                  </div>
+                      <span class="text-center"></span>
+                    </div>
+        
+                    <div class="wrap-input validate-input" data-validate="Password is required">
+                        <input class="input" id="password" type="password" name="password" placeholder="Password">
+                    </div>
 
-                  <div class="wrap-input validate-input" data-validate="Firstname is required">
-                    <input class="input" id="firstname" type="text" name="firstname" placeholder="Firstname">
-                </div>
+                    <div class="wrap-input validate-input" data-validate="Firstname is required">
+                      <input class="input" id="firstname" type="text" name="firstname" placeholder="Firstname">
+                    </div>
 
-                <div class="wrap-input validate-input" data-validate="Lastname is required">
-                    <input class="input" id="lastname" type="text" name="lastname" placeholder="Lastname">
-                </div>
+                    <div class="wrap-input validate-input" data-validate="Lastname is required">
+                        <input class="input" id="lastname" type="text" name="lastname" placeholder="Lastname">
+                    </div>
       
-                  <button name="submit" class="btn btn-primary btn-block" type="submit" name="LoginBT" id="LoginBT"> เข้าสู่ระบบ</button>
-                  <div class="text-center p-t-46 p-b-20">
+                  <button name="submit" class="btn btn-primary btn-block" type="submit" name="LoginBT" id="LoginBT">Register</button>
+                  <div class="text-center" style="padding: 20px;">
                       <span class="txt2">
                           <a href="login.html">
-                              or sign up using
+                              sign in
                           </a>
                       </span>
                   </div>
@@ -81,37 +82,33 @@
     <!--===============================================================================================-->
 
     <script src="assets/vendor/plugins/toastr/toastr.min.js"></script>
-    <!-- <script src="assets/js/login.js"></script> -->
+    <script src="assets/js/register.js"></script>
 
     <script type="text/javascript">
 
-    $(document).ready(function(){
-        $('#formData').on('submit', function (e) {
-            e.preventDefault();
-            $.post("assets/lib/datareturn.php", {
-                i: 105,
-                email: $('#email').val(),
-                password: $('#password').val(),
-                firstname: $('#firstname').val(),
-                lastname: $('#lastname').val(),
-            })
-            .done(function(resp) {
-                // console.log(resp);
-                if(resp.data === "Success"){
-                  toastr.success('สมัครสมาชิกเรียบร้อย')
-                  setTimeout(() => {
-                    window.location.href = 'login.html'
-                  }, 800);
-                }
-                else {
-                    toastr.error('ชื่อผู้ใช้งานนี้มีคนใช้เเล้ว')
-                  // setTimeout(() => {
-                  //   window.location.reload();
-                  // }, 800);
-                }
-        });
-    });
-});
+//     $(document).ready(function(){
+//         $('#formData').on('submit', function (e) {
+//             e.preventDefault();
+//             $.post("assets/lib/datareturn.php", {
+//                 i: 105,
+//                 email: $('#email').val(),
+//                 password: $('#password').val(),
+//                 firstname: $('#firstname').val(),
+//                 lastname: $('#lastname').val(),
+//             })
+//             .done(function(resp) {
+//                 if(resp.data === "Success"){
+//                   toastr.success('สมัครสมาชิกเรียบร้อย')
+//                   setTimeout(() => {
+//                     window.location.href = 'login.html'
+//                   }, 800);
+//                 }
+//                 else {
+//                     toastr.error('ชื่อผู้ใช้งานนี้มีคนใช้เเล้ว')
+//                 }
+//         });
+//     });
+// });
     </script>
 
 </body>

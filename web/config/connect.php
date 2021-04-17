@@ -8,7 +8,11 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
+<<<<<<< Updated upstream
 $dbname = "WebConfig";
+=======
+$dbname = "last_project";
+>>>>>>> Stashed changes
 
 
 // $urlheader = "http://localhost:8080/Github/Webconfig/New_project/frontend/";

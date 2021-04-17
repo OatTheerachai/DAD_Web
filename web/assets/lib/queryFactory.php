@@ -2,6 +2,30 @@
 session_start();
 header('Content-Type: application/json');
 
+function logAdmin($act_id) {
+    include("../../config/connect.php");
+    $uid = $_SESSION['uid'];
+    $sql = "INSERT INTO log_admin (user_id, activity_id) VALUES ('$uid', '$act_id')";
+    $result = queryData($sql);
+    if($result === '{"data":"Success"}') {
+        return true;
+    }
+    else {
+        false;
+    }
+}
+
+function checkEmail($email) {
+    include("../../config/connect.php");
+    $result = mysqli_query($conn, "SELECT * FROM users where email='$email'");
+    $resultnumrow = mysqli_num_rows($result);
+    if ($resultnumrow > 0) {
+        return '{"data":"available"}';
+    } else {
+        return '{"data":"unusable"}';
+    }
+}
+
 function checkUserPass($email, $pass)
 {
     include("../../config/connect.php");
@@ -12,7 +36,8 @@ function checkUserPass($email, $pass)
         $row = mysqli_fetch_assoc($result);
         $_SESSION['email'] = $email;
         $_SESSION['uid'] = $row['id'];
-        mysqli_query($conn, "UPDATE users set last_login=NOW() where email='$email'");
+        $_SESSION['role'] = $row['role'];
+        mysqli_query($conn, "UPDATE users set last_login= CURRENT_TIMESTAMP() where email='$email'");
         mysqli_close($conn);
         return true;
     } else {
