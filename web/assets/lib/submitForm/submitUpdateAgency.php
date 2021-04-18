@@ -51,10 +51,10 @@ if (isset($_POST['updatesub'])) {
 function updatedata($urlheader, $id, $bd, $code, $detailin, $engdetailin, $chidetailin, $floor, $owner, $name, $engname, $chiname, $cat, $imgname,  /*$imgdata,*/ $connector)
 {
 
-    $sql = "UPDATE agency_item SET code_place='$code', floor='$floor', owner='$owner', name='$name', chi_name='$chiname' , eng_name='$engname', bd_id='$bd', cat_id='$cat', detail='$detailin',eng_detail='$engdetailin',chi_detail='$chidetailin', LogoImgName='$imgname'/*, LogoImg=*/ WHERE id=$id";
+    $sql = "UPDATE agency_item SET code_place='$code', floor='$floor', owner='$owner', name='$name', chi_name='$chiname' , eng_name='$engname', bd_id='$bd', cat_id='$cat', detail='$detailin',eng_detail='$engdetailin',chi_detail='$chidetailin', LogoImgName='$imgname', changed_status=1/*, LogoImg=*/ WHERE id=$id";
 
     if ($imgname == '-' || $imgname == null /*$imgdata == null*/) {
-        $sql = "UPDATE agency_item SET code_place='$code', floor='$floor', owner='$owner', name='$name', chi_name='$chiname' , eng_name='$engname', bd_id='$bd', cat_id='$cat', detail='$detailin',eng_detail='$engdetailin',chi_detail='$chidetailin' WHERE id=$id";
+        $sql = "UPDATE agency_item SET code_place='$code', floor='$floor', owner='$owner', name='$name', chi_name='$chiname' , eng_name='$engname', bd_id='$bd', cat_id='$cat', detail='$detailin',eng_detail='$engdetailin',chi_detail='$chidetailin', changed_status=1 WHERE id=$id";
     }
     // echo 'you are in';
     // $sql = "INSERT INTO agency_item (code_place, floor, owner,name,bd_id,cat_id,detail,LogoImgName,LogoImg)

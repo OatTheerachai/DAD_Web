@@ -47,12 +47,12 @@ function insertdata($urlheader, $bd, $floor, $code, $cat, $owner, $name, $engnam
 {
 
 
-    $sql = "INSERT INTO agency_item (code_place, floor, owner,name,eng_name,chi_name,bd_id,cat_id,detail,eng_detail,chi_detail,LogoImgName/*,LogoImg*/)
-    VALUES ('$code', '$floor', '$owner','$name','$engname','$chiname','$bd','$cat','$detailin','$engdetailin','$chidetailin','$imgname')";
+    $sql = "INSERT INTO agency_item (code_place, floor, owner,name,eng_name,chi_name,bd_id,cat_id,detail,eng_detail,chi_detail,LogoImgName,changed_status/*,LogoImg*/)
+    VALUES ('$code', '$floor', '$owner','$name','$engname','$chiname','$bd','$cat','$detailin','$engdetailin','$chidetailin','$imgname',1)";
 
     if ($floor == null) {
-        $sql = "INSERT INTO agency_item (code_place, floor, owner,name,eng_name,chi_name,bd_id,cat_id,detail,eng_detail,chi_detail,LogoImgName/*,LogoImg*/)
-    VALUES ('$code', NULL , '$owner','$name','$engname','$chiname','$bd','$cat','$detailin','$engdetailin','$chidetailin','$imgname')";
+        $sql = "INSERT INTO agency_item (code_place, floor, owner,name,eng_name,chi_name,bd_id,cat_id,detail,eng_detail,chi_detail,LogoImgName,changed_status/*,LogoImg*/)
+    VALUES ('$code', NULL , '$owner','$name','$engname','$chiname','$bd','$cat','$detailin','$engdetailin','$chidetailin','$imgname',1)";
     }
 
 
